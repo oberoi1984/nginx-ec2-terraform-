@@ -1,0 +1,42 @@
+# .github/workflows/terraform.yml
+
+name: Terraform CI/CD on Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  terraform:
+    runs-on: self-hosted  # Use the self-hosted runner on Amazon Linux
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        run: |
+          # Install Terraform on Amazon Linux
+          sudo yum install -y yum-utils
+          sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+          sudo yum -y install terraform
+          terraform --version
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Validate Terraform
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ AKIAQE3ROVUYJVJLS3E6 }}
+          AWS_SECRET_ACCESS_KEY: ${{ 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 }}
+
+      - name: Show Outputs
+        run: terraform output
