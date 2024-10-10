@@ -4,12 +4,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Create a key pair for EC2 instance access
-#resource "aws_key_pair" "key_pair" {
-#  key_name   = var.key_name
-#  public_key = file(var.public_key_path)
-#}
-
 # Create a security group to allow SSH and HTTP access
 resource "aws_security_group" "nginx_sg" {
   name_prefix = "nginx-sg-"
@@ -44,7 +38,6 @@ resource "aws_security_group" "nginx_sg" {
 resource "aws_instance" "nginx_instance" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  #key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.nginx_sg.id]
 
   user_data = file("scripts/user_data.sh")
