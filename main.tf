@@ -5,10 +5,10 @@ provider "aws" {
 }
 
 # Create a key pair for EC2 instance access
-resource "aws_key_pair" "key_pair" {
-  key_name   = var.key_name
-  public_key = file(var.public_key_path)
-}
+#resource "aws_key_pair" "key_pair" {
+#  key_name   = var.key_name
+#  public_key = file(var.public_key_path)
+#}
 
 # Create a security group to allow SSH and HTTP access
 resource "aws_security_group" "nginx_sg" {
