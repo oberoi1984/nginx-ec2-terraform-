@@ -5,10 +5,10 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
-variable "key_name" {
-  description = "Name of the key pair"
-  default     = "nginx-key-pair"
-}
+#variable "key_name" {
+#  description = "Name of the key pair"
+#  default     = "nginx-key-pair"
+#}
 
 variable "public_key_path" {
   description = "Path to the public key file"
