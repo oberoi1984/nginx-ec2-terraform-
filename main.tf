@@ -44,7 +44,7 @@ resource "aws_security_group" "nginx_sg" {
 resource "aws_instance" "nginx_instance" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.key_pair.key_name
+  #key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.nginx_sg.id]
 
   user_data = file("scripts/user_data.sh")
