@@ -14,3 +14,9 @@ variable "instance_type" {
   description = "EC2 instance type"
   default     = "t2.micro"
 }
+
+variable "key_pair_name" {
+  description = "Name of the SSH key pair to use"
+  type        = string
+  default     = "New-Key"
+}
